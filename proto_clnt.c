@@ -66,5 +66,5 @@ void changeTimeout(CLIENT *cl){
 	struct timeval delai;
 	delai.tv_sec=60;
 	delai.tv_usec=0;
-	clnt_control(clnt, CLSET_TIMEOUT,(char*) &delai);
+	clnt_control(cl, CLSET_TIMEOUT,(char*) &delai);
 }
