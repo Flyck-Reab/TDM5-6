@@ -136,7 +136,6 @@ main (int argc, char *argv[])
 		else
 		{	
 			printf (" Arguments  : IP commande fichier2 ecraser fichier1\necraser : \n0  pour NON \n1 pour OUI\n");
-			exit (1);
 		}
 	}
 	exit (0);
