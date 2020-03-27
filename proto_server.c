@@ -14,11 +14,13 @@ verificationInformations(struct svc_req *rq)
 	switch(rq->rq_cred.oa_flavor)
 	{
 		case AUTH_UNIX:
-			struct authunix_parms* aup = (struct authunix_parms *) rqstp->rq_clntcred;
+			printf("AUTH_UNIX\n");
+			struct authunix_parms* aup = (struct authunix_parms *) rq->rq_clntcred;
 			printf("uid serveur : %d \n", getuid());
 			printf("uid client : %d\n", aup->aup_uid);
 			return 0;
 		default :
+			printf("AUTH_NULL\n");
 			return 1;
 	}
 }
@@ -28,7 +30,6 @@ ls_res *
 ls_1_svc(type_nom *argp, struct svc_req *rqstp){
 	printf("ls demandé\n");
 	static ls_res  result;
-	ls_res result;
 	result.erreur=0;
 	result.erreur=verificationInformations(rqstp);
 	if(result.erreur!=0)
@@ -82,7 +83,7 @@ read_1_svc(type_nom *argp, struct svc_req *rqstp)
 	struct dirent *infosReadDir;
 	cell_bloc *cell1;
 	cell_bloc *cell2;
-	file = fopen(fichier,"r");
+	file = fopen(*argp,"r");
 	if(file==NULL) 
 	{
 		result.erreur=2;
@@ -114,7 +115,7 @@ write_1_svc(write_parm *argp, struct svc_req *rqstp)
 	static int  result;
 	result=0;
 	
-	erreur=verificationInformations(rqstp);
+	result=verificationInformations(rqstp);
 	if(result!=0)
 	{
 		return &result;

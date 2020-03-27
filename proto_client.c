@@ -76,7 +76,6 @@ proto_gestion_fichier_1(char *host, char *commande, char *fichier1, bool_t ecras
 				printf("Erreur\n");
 			}
 			xdr_free((xdrproc_t)xdr_read_res,(char*)result_2);
-			printf("\n-----------------Fin du programme read-----------------\n\n\n");
 		}
 		else
 		{
@@ -95,7 +94,7 @@ proto_gestion_fichier_1(char *host, char *commande, char *fichier1, bool_t ecras
 				int erreur = *result_3;
 				if(erreur==0)
 				{
-					printf("Pas d'erreur");
+					printf("Pas d'erreur\n");
 				}
 				else
 				{
@@ -136,8 +135,8 @@ main (int argc, char *argv[])
 		else
 		{	
 			printf (" Arguments  : IP commande fichier2 ecraser fichier1\necraser : \n0  pour NON \n1 pour OUI\n");
+			exit(1);
 		}
-	}
 	exit (0);
 }
 
